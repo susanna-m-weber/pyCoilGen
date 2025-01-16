@@ -6,7 +6,6 @@ from dataclasses import dataclass
 import trimesh
 
 # Logging
-import logging
 
 # Local imports
 from .constants import *

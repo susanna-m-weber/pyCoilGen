@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from pyCoilGen.helpers.persistence import load
 import pyCoilGen.plotting as pcg_plt
 
-solution = load('debug', 's2_shim_coil', 'final')
+solution = load('debug', 'double_ellipe', 'final')
 which = solution.input_args.project_name
 save_dir = f'{solution.input_args.output_directory}'
 makedirs(save_dir, exist_ok=True)
