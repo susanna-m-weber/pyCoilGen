@@ -5,6 +5,7 @@ September 2023
 
 Demonstrate using the plotting routines to visualise data from the s2_shim_coil example.
 """
+# test 
 
 from os import makedirs
 
