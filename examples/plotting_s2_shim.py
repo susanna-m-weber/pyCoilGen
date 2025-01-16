@@ -12,8 +12,8 @@ import matplotlib.pyplot as plt
 from pyCoilGen.helpers.persistence import load
 import pyCoilGen.plotting as pcg_plt
 
-solution = load('debug', 's2_shim_coil', 'final')
-which = solution.input_args.project_name
+solution = load('debug', 'ygradient_coil', 'final')
+which = 'y_grad_x_rotation_pi_half'
 save_dir = f'{solution.input_args.output_directory}'
 makedirs(save_dir, exist_ok=True)
 
@@ -32,6 +32,12 @@ coords = solution.target_field.coords
 # Plot the computed target field.
 plot_title = f'{which} Target Field '
 field = solution.solution_errors.combined_field_layout
+
+pcg_plt.plot_vector_field(coords, field, plot_title = f'{which} vector field',save_dir=save_dir)
+
+pcg_plt.plot_vector_field_yz(coords, field, plot_title= f'{which} yz vector field', save_dir=save_dir)
+
+
 pcg_plt.plot_vector_field_xy(coords, field, plot_title=plot_title, save_dir=save_dir)
 
 # Plot the difference between the computed target field and the input target field.
