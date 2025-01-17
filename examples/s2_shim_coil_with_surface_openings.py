@@ -26,7 +26,7 @@ if __name__ == '__main__':
     # logging.basicConfig(level=logging.INFO)
 
     arg_dict = {
-        'field_shape_function': '2*x*y',  # definition of the target field
+        'field_shape_function': '100.0',  # definition of the target field
         'coil_mesh_file': 'cylinder_radius500mm_length1500mm_regular_holes.stl',
         'target_mesh_file': 'none',
         'secondary_target_mesh_file': 'none',

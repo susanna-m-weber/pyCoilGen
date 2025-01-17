@@ -11,8 +11,9 @@ from os import makedirs
 import matplotlib.pyplot as plt
 from pyCoilGen.helpers.persistence import load
 import pyCoilGen.plotting as pcg_plt
+import numpy as np
 
-solution = load('debug', 'flattened_sphere_attempt_2', 'final')
+solution = load('debug', '1flattened_sphere_large', 'final')
 which = solution.input_args.project_name
 save_dir = f'{solution.input_args.output_directory}'
 makedirs(save_dir, exist_ok=True)

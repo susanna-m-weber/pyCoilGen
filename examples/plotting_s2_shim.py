@@ -34,6 +34,7 @@ plot_title = f'{which} Target Field '
 field = solution.solution_errors.combined_field_layout
 pcg_plt.plot_vector_field_xy(coords, field, plot_title=plot_title, save_dir=save_dir)
 
+print("i got here")
 # Plot the difference between the computed target field and the input target field.
 plot_title = f'{which} Target Field Error '
 field = solution.solution_errors.combined_field_layout - solution.target_field.b
