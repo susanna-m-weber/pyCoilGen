@@ -20,9 +20,6 @@ if __name__ == '__main__':
     arg_dict = {
         'field_shape_function': 'y',            # % definition of the target field ['x']
         'coil_mesh_file': 'cylinder_radius500mm_length1500mm.stl',
-        'target_mesh': 'create cylinder mesh',
-        # 'stl_mesh_filename': 'test_sphere_2.stl',
-        'cylinder_mesh_parameter_list': [0.1, 0.1, 20, 20, 1, 0, 0, np.pi/2],
         'secondary_target_weight': 0.5,         # [1.0]
         'target_region_resolution': 10,        # MATLAB 10 is the default
         'levels': 20,                           # The number of potential steps, determines the number of windings [10]
@@ -44,7 +41,7 @@ if __name__ == '__main__':
         'project_name': 'ygradient_coil',       # ['CoilGen']
         'persistence_dir': 'debug',             # [debug]
         # 'debug': DEBUG_VERBOSE,
-        'debug': DEBUG_VERBOSE,                   # [0 = NONE]
+        'debug': DEBUG_BASIC,                   # [0 = NONE]
     }
 
     result = pyCoilGen(log, arg_dict)

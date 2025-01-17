@@ -28,30 +28,29 @@ if __name__ == '__main__':
     arg_dict = {
         'field_shape_function': 'x',  # definition of the target field
         'target_gradient_strength': 1,
-        'coil_mesh_file': 'flattened_sphere_attempt_1.stl', 
+        'coil_mesh_file': 'double_half_sphere_attempt_6.stl', 
        # 'coil_mesh': 'create bi-planar mesh',
         # 'biplanar_mesh_parameter_list': [0.25, 0.5, 20, 20, 1, 0, 0, 0, 0, 0, 0.2],
         'target_mesh_file': 'none',
         'target_region_radius': 0.005,  # in meter
         'use_only_target_mesh_verts': False,
         'sf_source_file': 'none',
-        # the number of potential steps that determines the later number of windings (Stream function discretization)
         'levels': 14,
         'pot_offset_factor': 0.25,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
-        'surface_is_cylinder_flag': True,
+        'surface_is_cylinder_flag': False,
         'interconnection_cut_width': 0.05,  # the width for the interconnections are interconnected; in meter
         'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
         'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
         'set_roi_into_mesh_center': True,
         'skip_normal_shift': False,
-        'force_cut_selection': ['low'],
+        'force_cut_selection': ['high'],
         'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
         'skip_postprocessing': False,
         'skip_inductance_calculation': False,
         'conductor_thickness': 0.01,
         'tikhonov_reg_factor': 10,  # Tikhonov regularization factor for the SF optimization
         'output_directory': 'images',  # [Current directory]
-        'project_name': 'flattened_sphere',
+        'project_name': 'double_half_sphere_attempt_6',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }
