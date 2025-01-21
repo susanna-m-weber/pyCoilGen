@@ -45,7 +45,7 @@ if __name__ == '__main__':
         'target_region_radius': 0.25,  # in meter
         'use_only_target_mesh_verts': False,
         'sf_source_file': 'none',
-        'levels': 25,
+        'levels': 17,
         'pot_offset_factor': 0.1,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
         'surface_is_cylinder_flag': False,
         'interconnection_cut_width': 0.05,  # the width for the interconnections are interconnected; in meter
@@ -58,7 +58,7 @@ if __name__ == '__main__':
         'skip_postprocessing': False,
         'skip_inductance_calculation': False,
         'conductor_thickness': 0.01,
-        'tikhonov_reg_factor': 10,  # Tikhonov regularization factor for the SF optimization
+        'tikhonov_reg_factor': 3,  # Tikhonov regularization factor for the SF optimization
         'output_directory': 'images',  # [Current directory]
         'project_name': 'flattened_sphere_9',
         'persistence_dir': 'debug',

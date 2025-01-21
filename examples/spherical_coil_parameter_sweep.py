@@ -36,6 +36,42 @@ def project_name(param_dict, combination):
 
 
 def process_combination(combination):
+    log = logging.getLogger(__name__)
+    logging.basicConfig(level=logging.INFO)
+    
+    constant_params = {
+        'field_shape_function': '100.0',  # definition of the target field
+        'target_gradient_strength': 1,
+        'coil_mesh_file': 'flattened_sphere_9.stl', 
+        'target_region_radius': 0.25,  # in meter
+        'use_only_target_mesh_verts': False,
+        'sf_source_file': 'none',
+        'levels': 25,
+        'pot_offset_factor': 0.1,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
+        'surface_is_cylinder_flag': False,
+        'interconnection_cut_width': 0.05,  # the width for the interconnections are interconnected; in meter
+        'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
+        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
+        'set_roi_into_mesh_center': True,
+        'skip_normal_shift': False,
+        'force_cut_selection': ['high'],
+        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
+        'skip_postprocessing': False,
+        'skip_inductance_calculation': False,
+        'conductor_thickness': 0.01,
+        'tikhonov_reg_factor': 10,  # Tikhonov regularization factor for the SF optimization
+        'output_directory': 'images',  # [Current directory]
+        'project_name': 'flattened_sphere_9',
+        'persistence_dir': 'debug',
+        'debug': DEBUG_BASIC,
+    }
+
+    sweep_params = {
+        'tikhonov_reg_factor': [3, 4, 5, 6, 8, 10],  # tikhonov regularization factor for the SF optimization
+        # the number of potential steps that determines the later number of windings (Stream function discretization)
+        'levels': [15, 16, 17, 18, 19]
+    }
+
     # Create a copy of the constant parameters
     param_dict = constant_params.copy()
 
@@ -63,24 +99,28 @@ if __name__ == '__main__':
 
     constant_params = {
         'field_shape_function': '100.0',  # definition of the target field
-        'coil_mesh_file': 'flattened_sphere_7.stl',
-        # cylinder_height[in m], cylinder_radius[in m], num_circular_divisions,  num_longitudinal_divisions, rotation_vector: x,y,z, and  rotation_angle [radian]
-        # 'cylinder_mesh_parameter_list': [0.4913, 0.154, 50, 50, 0, 1, 0, np.pi/2],
-        'surface_is_cylinder_flag': False,
-        'target_region_radius': 0.1,  # in meter
+        'target_gradient_strength': 1,
+        'coil_mesh_file': 'flattened_sphere_9.stl', 
+        'target_region_radius': 0.25,  # in meter
+        'use_only_target_mesh_verts': False,
+        'sf_source_file': 'none',
+        'levels': 25,
         'pot_offset_factor': 0.1,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
+        'surface_is_cylinder_flag': False,
         'interconnection_cut_width': 0.05,  # the width for the interconnections are interconnected; in meter
-        # the length for which overlapping return paths will be shifted along the surface normals; in meter
-        'conductor_thickness': 0.05,
-        'normal_shift_length': normal_shift,
+        'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
+        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
+        'set_roi_into_mesh_center': True,
+        'skip_normal_shift': False,
+        'force_cut_selection': ['high'],
+        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
         'skip_postprocessing': False,
-        'make_cylindrical_pcb': True,
         'skip_inductance_calculation': False,
-        'save_stl_flag': True,
-
+        'conductor_thickness': 0.01,
+        'tikhonov_reg_factor': 10,  # Tikhonov regularization factor for the SF optimization
         'output_directory': 'images',  # [Current directory]
-        'project_name': 'halbach_gradient_x',
-        'persistence_dir': 'debug/halbach',
+        'project_name': 'flattened_sphere_9',
+        'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }
 
@@ -116,7 +156,7 @@ if __name__ == '__main__':
             results = pool.map(process_combination, missing)
     else:
         # results now contains the results of each call to solve
-        image_dir = 'images/halbach'
+        image_dir = 'images/spherical_coil_param_sweep'
         makedirs(image_dir, exist_ok=True)
         # Plot figures of all levels per tikhonov_reg_factor (i.e. the tikhonov_reg_factor is fixed in each figure)
         for index, tk in enumerate(sweep_params['tikhonov_reg_factor']):
