@@ -41,26 +41,32 @@ if __name__ == '__main__':
     arg_dict = {
         'field_shape_function': '100.0',  # definition of the target field
         'target_gradient_strength': 1,
-        'coil_mesh_file': 'flattened_sphere_9.stl', 
-        'target_region_radius': 0.25,  # in meter
-        'use_only_target_mesh_verts': False,
+        'coil_mesh_file': 'bisected_sphere_3.stl', 
+        'target_region_radius': 0.06,  # in meter
         'sf_source_file': 'none',
-        'levels': 17,
-        'pot_offset_factor': 0.1,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
         'surface_is_cylinder_flag': False,
-        'interconnection_cut_width': 0.05,  # the width for the interconnections are interconnected; in meter
-        'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
-        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
         'set_roi_into_mesh_center': True,
+        'use_only_target_mesh_verts': True,
         'skip_normal_shift': False,
-        'force_cut_selection': ['high'],
-        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
         'skip_postprocessing': False,
         'skip_inductance_calculation': False,
-        'conductor_thickness': 0.01,
-        'tikhonov_reg_factor': 3,  # Tikhonov regularization factor for the SF optimization
+        'force_cut_selection': ['high'],
+        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
+        'minimize_method_options': {'disp': True, 'maxiter': 500},
+        'minimize_method_parameters': "{'tol': 1e-3}",
+ 
+        'levels': 17,
+        'tikhonov_reg_factor': 3,
+        'pot_offset_factor': 0.2,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
+        'interconnection_cut_width': 0.005,  # the width for the interconnections are interconnected; in meter
+        'conductor_thickness': 0.07,
+        
+        'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
+        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
+       
+        
         'output_directory': 'images',  # [Current directory]
-        'project_name': 'flattened_sphere_9',
+        'project_name': 'bisected_sphere',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }

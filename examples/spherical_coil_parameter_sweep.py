@@ -44,33 +44,36 @@ def process_combination(combination):
         'target_gradient_strength': 1,
         'coil_mesh_file': 'flattened_sphere_9.stl', 
         'target_region_radius': 0.25,  # in meter
-        'use_only_target_mesh_verts': False,
         'sf_source_file': 'none',
-        'levels': 17,
-        #'pot_offset_factor': 0.1,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
         'surface_is_cylinder_flag': False,
-        'interconnection_cut_width': 0.05,  # the width for the interconnections are interconnected; in meter
-        'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
-        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
         'set_roi_into_mesh_center': True,
+        'use_only_target_mesh_verts': False,
         'skip_normal_shift': False,
-        'force_cut_selection': ['high'],
-        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
         'skip_postprocessing': False,
         'skip_inductance_calculation': False,
-        'conductor_thickness': 0.01,
-        'tikhonov_reg_factor': 10,  # Tikhonov regularization factor for the SF optimization
-        'output_directory': 'images',  # [Current directory]
-        'project_name': 'flattened_sphere_9_r2',
+        'force_cut_selection': ['high'],
+        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
+ 
+        'levels': 17,
         'tikhonov_reg_factor': 3,
+        'pot_offset_factor': 0.2,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
+        'interconnection_cut_width': 0.005,  # the width for the interconnections are interconnected; in meter
+       
+        'conductor_thickness': 0.07,
+        #'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
+        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
+       
+        
+        'output_directory': 'images',  # [Current directory]
+        'project_name': 'flattened_sphere_9_r4',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }
 
     sweep_params = {
-        'pot_offset_factor': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6],  # tikhonov regularization factor for the SF optimization
-        # the number of potential steps that determines the later number of windings (Stream function discretization)
-        'interconnection_cut_width': [0.005, 0.01, 0.02, 0.03, 0.04, 0.05]
+        'normal_shift_length': [0.0005, 0.001, 0.002, 0.004, 0.004, 0.005],  
+
+        'interconnection_cut_width': [0.00005, 0.001, 0.002, 0.003, 0.004, 0.005]
     }
 
     # Create a copy of the constant parameters
@@ -103,33 +106,36 @@ if __name__ == '__main__':
         'target_gradient_strength': 1,
         'coil_mesh_file': 'flattened_sphere_9.stl', 
         'target_region_radius': 0.25,  # in meter
-        'use_only_target_mesh_verts': False,
         'sf_source_file': 'none',
-        'levels': 17,
-        #'pot_offset_factor': 0.1,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
         'surface_is_cylinder_flag': False,
-        'interconnection_cut_width': 0.05,  # the width for the interconnections are interconnected; in meter
-        'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
-        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
         'set_roi_into_mesh_center': True,
+        'use_only_target_mesh_verts': False,
         'skip_normal_shift': False,
-        'force_cut_selection': ['high'],
-        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
         'skip_postprocessing': False,
         'skip_inductance_calculation': False,
-        'conductor_thickness': 0.01,
-        'tikhonov_reg_factor': 10,  # Tikhonov regularization factor for the SF optimization
-        'output_directory': 'images',  # [Current directory]
-        'project_name': 'flattened_sphere_9_r2',
+        'force_cut_selection': ['high'],
+        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
+ 
+        'levels': 17,
         'tikhonov_reg_factor': 3,
+        'pot_offset_factor': 0.2,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
+        'interconnection_cut_width': 0.005,  # the width for the interconnections are interconnected; in meter
+       
+        'conductor_thickness': 0.07,
+        #'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
+        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
+       
+        
+        'output_directory': 'images',  # [Current directory]
+        'project_name': 'flattened_sphere_9_r4',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }
 
     sweep_params = {
-        'pot_offset_factor': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6],  # tikhonov regularization factor for the SF optimization
-        # the number of potential steps that determines the later number of windings (Stream function discretization)
-        'interconnection_cut_width': [0.005, 0.01, 0.02, 0.03, 0.04, 0.05]
+        'normal_shift_length': [0.0005, 0.001, 0.002, 0.004, 0.004, 0.005],  
+
+        'interconnection_cut_width': [0.00005, 0.001, 0.002, 0.003, 0.004, 0.005]
     }
 
 
@@ -161,8 +167,8 @@ if __name__ == '__main__':
         image_dir = 'images/spherical_coil_param_sweep'
         makedirs(image_dir, exist_ok=True)
         # Plot figures of all levels per tikhonov_reg_factor (i.e. the tikhonov_reg_factor is fixed in each figure)
-        for index, tk in enumerate(sweep_params['pot_offset_factor']):
-            title = f'Circular Coil Study\n(Potential Offset {tk})'
+        for index, tk in enumerate(sweep_params['normal_shift_length']):
+            title = f'Circular Coil Study\n(Normal Shift{tk})'
             base = len(sweep_params['interconnection_cut_width'])*index
             to_plot = [base+i for i in range(len(sweep_params['interconnection_cut_width']))]
             plot_error_different_solutions(results, to_plot, title, x_ticks={
