@@ -33,16 +33,11 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
     # logging.basicConfig(level=logging.INFO)
 
-    pcb_width = 0.002
-    cut_width = 0.025
-    normal_shift = 0.005
-    min_loop_significance = 3
-
     arg_dict = {
         'field_shape_function': '100.0',  # definition of the target field
         'target_gradient_strength': 1,
         'coil_mesh_file': 'flattened_sphere_9.stl', 
-        'target_region_radius': 0.06,  # in meter
+        'target_region_radius': 0.25,  # in meter
         'sf_source_file': 'none',
         'surface_is_cylinder_flag': False,
         'set_roi_into_mesh_center': True,
@@ -52,21 +47,20 @@ if __name__ == '__main__':
         'skip_inductance_calculation': False,
         'force_cut_selection': ['high'],
         'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
-        'minimize_method_options': {'disp': True, 'maxiter': 500},
-        'minimize_method_parameters': "{'tol': 1e-3}",
  
         'levels': 17,
         'tikhonov_reg_factor': 3,
         'pot_offset_factor': 0.2,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
         'interconnection_cut_width': 0.005,  # the width for the interconnections are interconnected; in meter
         'conductor_thickness': 0.07,
+        'min_loop_significance': 1,
         
         'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
-        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
+        'iteration_num_mesh_refinement': 1,  # the number of refinements for the mesh;
        
         
         'output_directory': 'images',  # [Current directory]
-        'project_name': 'flattened_sphere_test',
+        'project_name': 'flattened_sphere_updated_default_tol',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }

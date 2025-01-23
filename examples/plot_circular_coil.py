@@ -13,7 +13,7 @@ from pyCoilGen.helpers.persistence import load
 import pyCoilGen.plotting as pcg_plt
 import numpy as np
 
-solution = load('debug', 'bisected_sphere', 'final')
+solution = load('debug', 'flattened_sphere_updated_default_tol', 'final')
 which = solution.input_args.project_name
 save_dir = f'{solution.input_args.output_directory}'
 makedirs(save_dir, exist_ok=True)
