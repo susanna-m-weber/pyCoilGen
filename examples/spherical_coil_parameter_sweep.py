@@ -40,9 +40,9 @@ def process_combination(combination):
     logging.basicConfig(level=logging.INFO)
 
     constant_params = {
-        'field_shape_function': '100.0',  # definition of the target field
+   'field_shape_function': '100.0',  # definition of the target field
         'target_gradient_strength': 1,
-        'coil_mesh_file': 'bisected_sphere_3.stl', 
+        'coil_mesh_file': 'bisected_sphere_6.stl', 
         'target_region_radius': 0.25,  # in meter
         'sf_source_file': 'none',
         'surface_is_cylinder_flag': False,
@@ -53,27 +53,30 @@ def process_combination(combination):
         'skip_inductance_calculation': False,
         'force_cut_selection': ['high'],
         'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
- 
-        # 'levels': 17,
-        #'tikhonov_reg_factor': 3,
-        'pot_offset_factor': 0.2,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
-        'interconnection_cut_width': 0.005,  # the width for the interconnections are interconnected; in meter
-        'conductor_thickness': 0.07,
-        'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
-        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
+        'levels':17,
+        'tikhonov_reg_factor': 1,
+        'pot_offset_factor': 0.5,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
+        'interconnection_cut_width': 0.01,  # the width for the interconnections are interconnected; in meter
+        'conductor_thickness': 0.005,
         'min_loop_significance': 1,
-
+        'normal_shift_length': 0.001,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
+        'iteration_num_mesh_refinement': 1,  # the number of refinements for the mesh;
+       
         
         'output_directory': 'images',  # [Current directory]
-        'project_name': 'bisected_sphere_sweep1',
+        'project_name': 'bisected_sphere_updated_13',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }
+
+
+
     # Define the parameter ranges
+# Define the parameter ranges
     sweep_params = {
-        'tikhonov_reg_factor': [3, 4, 5, 6, 8, 10],  # tikhonov regularization factor for the SF optimization
+        'tikhonov_reg_factor': [0.6, 0.8, 1, 2, 3, 4, 5, 6],  # tikhonov regularization factor for the SF optimization
         # the number of potential steps that determines the later number of windings (Stream function discretization)
-        'levels': [15, 16, 17, 18, 19]
+        'levels': [11, 12, 13, 14, 15, 16, 17, 18]
     }
 
     # Create a copy of the constant parameters
@@ -100,39 +103,36 @@ if __name__ == '__main__':
     constant_params = {
         'field_shape_function': '100.0',  # definition of the target field
         'target_gradient_strength': 1,
-        'coil_mesh_file': 'bisected_sphere_3.stl', 
+        'coil_mesh_file': 'bisected_sphere_medium_mesh.stl', 
         'target_region_radius': 0.25,  # in meter
         'sf_source_file': 'none',
         'surface_is_cylinder_flag': False,
-        'set_roi_into_mesh_center': True,
+        'set_roi_into_mesh_center': False,
         'use_only_target_mesh_verts': False,
         'skip_normal_shift': False,
         'skip_postprocessing': False,
         'skip_inductance_calculation': False,
         'force_cut_selection': ['high'],
         'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
- 
-        # 'levels': 17,
-        #'tikhonov_reg_factor': 3,
-        'pot_offset_factor': 0.2,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
-        'interconnection_cut_width': 0.005,  # the width for the interconnections are interconnected; in meter
-        'conductor_thickness': 0.07,
-        'normal_shift_length': 0.01,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
-        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
+        'pot_offset_factor': 0.5,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
+        'interconnection_cut_width': 0.01,  # the width for the interconnections are interconnected; in meter
+        'conductor_thickness': 0.005,
         'min_loop_significance': 1,
-
-        
+        'normal_shift_length': 0.001,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
+        'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
         'output_directory': 'images',  # [Current directory]
-        'project_name': 'bisected_sphere_sweep1',
+        'project_name': 'bisected_sphere_sweep_2',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }
+
     # Define the parameter ranges
+# Define the parameter ranges
     sweep_params = {
-        'tikhonov_reg_factor': [3, 4, 5, 6, 8, 10],  # tikhonov regularization factor for the SF optimization
-        # the number of potential steps that determines the later number of windings (Stream function discretization)
-        'levels': [15, 16, 17, 18, 19]
-    }
+            'tikhonov_reg_factor': [0.6, 0.8, 1, 2, 3, 4, 5, 6],  # tikhonov regularization factor for the SF optimization
+            # the number of potential steps that determines the later number of windings (Stream function discretization)
+            'levels': [11, 12, 13, 14, 15, 16, 17, 18]
+        }
 
     # Generate all combinations of parameters
     parameter_combinations = itertools.product(*sweep_params.values())
@@ -159,11 +159,11 @@ if __name__ == '__main__':
             results = pool.map(process_combination, missing)
     else:
         # results now contains the results of each call to solve
-        image_dir = 'images/spherical_coil_param_sweep'
+        image_dir = 'images/sweep_sphere_2'
         makedirs(image_dir, exist_ok=True)
         # Plot figures of all levels per tikhonov_reg_factor (i.e. the tikhonov_reg_factor is fixed in each figure)
         for index, tk in enumerate(sweep_params['tikhonov_reg_factor']):
-            title = f'Circular Coil Study\n(Tikhonov{tk})'
+            title = f'Halbach study\n(Tikhonov {tk})'
             base = len(sweep_params['levels'])*index
             to_plot = [base+i for i in range(len(sweep_params['levels']))]
             plot_error_different_solutions(results, to_plot, title, x_ticks={

@@ -1,0 +1,30 @@
+   arg_dict = {
+        'field_shape_function': '100.0',  # definition of the target field
+        'target_gradient_strength': 1,
+        'coil_mesh_file': 'bisected_sphere_5.stl', 
+        'target_region_radius': 0.25,  # in meter
+        'sf_source_file': 'none',
+        'surface_is_cylinder_flag': False,
+        'set_roi_into_mesh_center': False,
+        'use_only_target_mesh_verts': False,
+        'skip_normal_shift': False,
+        'skip_postprocessing': False,
+        'skip_inductance_calculation': False,
+        'force_cut_selection': ['high'],
+        'level_set_method': 'primary',  # Specify one of the three ways the level sets are calculated: "primary","combined", or "independent"
+ 
+        'levels': 17,
+        'tikhonov_reg_factor': 1,
+        'pot_offset_factor': 0.4,  # a potential offset value for the minimal and maximal contour potential ; must be between 0 and 1
+        'interconnection_cut_width': 0.02,  # the width for the interconnections are interconnected; in meter
+        'conductor_thickness': 0.04,
+        'min_loop_significance': 1,
+        'normal_shift_length': 0.025,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
+        'iteration_num_mesh_refinement': 1,  # the number of refinements for the mesh;
+       
+        
+        'output_directory': 'images',  # [Current directory]
+        'project_name': 'bisected_sphere_medium_mesh',
+        'persistence_dir': 'debug',
+        'debug': 0,
+    }
