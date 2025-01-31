@@ -42,7 +42,7 @@ def process_combination(combination):
     constant_params = {
    'field_shape_function': '100.0',  # definition of the target field
         'target_gradient_strength': 1,
-        'coil_mesh_file': 'bisected_sphere_6.stl', 
+        'coil_mesh_file': 'bisected_sphere_10.stl', 
         'target_region_radius': 0.25,  # in meter
         'sf_source_file': 'none',
         'surface_is_cylinder_flag': False,
@@ -64,7 +64,7 @@ def process_combination(combination):
        
         
         'output_directory': 'images',  # [Current directory]
-        'project_name': 'bisected_sphere_updated_13',
+        'project_name': 'bisected_sphere_sweep_3',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     constant_params = {
         'field_shape_function': '100.0',  # definition of the target field
         'target_gradient_strength': 1,
-        'coil_mesh_file': 'bisected_sphere_medium_mesh.stl', 
+        'coil_mesh_file': 'bisected_sphere_10.stl', 
         'target_region_radius': 0.25,  # in meter
         'sf_source_file': 'none',
         'surface_is_cylinder_flag': False,
@@ -121,7 +121,7 @@ if __name__ == '__main__':
         'normal_shift_length': 0.001,  # the length for which overlapping return paths will be shifted along the surface normals; in meter
         'iteration_num_mesh_refinement': 0,  # the number of refinements for the mesh;
         'output_directory': 'images',  # [Current directory]
-        'project_name': 'bisected_sphere_sweep_2',
+        'project_name': 'bisected_sphere_sweep_3',
         'persistence_dir': 'debug',
         'debug': DEBUG_BASIC,
     }
@@ -159,7 +159,7 @@ if __name__ == '__main__':
             results = pool.map(process_combination, missing)
     else:
         # results now contains the results of each call to solve
-        image_dir = 'images/sweep_sphere_2'
+        image_dir = 'images/sweep_sphere_3'
         makedirs(image_dir, exist_ok=True)
         # Plot figures of all levels per tikhonov_reg_factor (i.e. the tikhonov_reg_factor is fixed in each figure)
         for index, tk in enumerate(sweep_params['tikhonov_reg_factor']):
